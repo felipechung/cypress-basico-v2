@@ -34,4 +34,36 @@ describe("Central de Atendimento ao Cliente TAT", function () {
   it("verifica se campo de telefone continua vazio quando preenchido com valor nao numerico", function () {
     cy.get("#phone").type("teste").should("have.value", "");
   });
+
+  it("preenche e limpa os campos nome, sobrenome, email e telefone", function () {
+    cy.get("#firstName")
+      .type("Felipe")
+      .should("have.value", "Felipe")
+      .clear()
+      .should("have.value", "");
+    cy.get("#lastName")
+      .type("Chung")
+      .should("have.value", "Chung")
+      .clear()
+      .should("have.value", "");
+    cy.get("#email")
+      .type("fchung.dev@gmail.com")
+      .should("have.value", "fchung.dev@gmail.com")
+      .clear()
+      .should("have.value", "");
+    cy.get("#phone")
+      .type("123456")
+      .should("have.value", "123456")
+      .clear()
+      .should("have.value", "");
+  });
+  it("exibe mensagem de erro ao submeter o formulário sem preencher os campos obrigatórios", function () {
+    cy.get('button[type="submit"]').click();
+    cy.get(".error").should("be.visible");
+  });
+
+  it("envia o formulario com sucesso, usando um comando customizado", () => {
+    cy.fillMandatoryFieldsAndSubmit();
+    cy.get(".success").should("be.visible");
+  });
 });
