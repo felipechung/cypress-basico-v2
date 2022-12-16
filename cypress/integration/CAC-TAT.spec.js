@@ -19,7 +19,7 @@ describe("Central de Atendimento ao Cliente TAT", function () {
     cy.get(".success").should("be.visible");
   });
 
-  it.only("exibe mensagem de erro ao submeter o formulário com um email com formatação inválida", function () {
+  it("exibe mensagem de erro ao submeter o formulário com um email com formatação inválida", function () {
     cy.get("#firstName").type("Felipe");
     cy.get("#lastName").type("Chung");
     cy.get("#email").type("fchung.dev@gmail,com");
@@ -65,5 +65,25 @@ describe("Central de Atendimento ao Cliente TAT", function () {
   it("envia o formulario com sucesso, usando um comando customizado", () => {
     cy.fillMandatoryFieldsAndSubmit();
     cy.get(".success").should("be.visible");
+  });
+
+  it("seleciona campo de selecao suspensa", () => {
+    cy.get("select").select("YouTube").should("have.value", "youtube");
+    cy.get("select").select("Mentoria").should("have.value", "mentoria");
+    cy.get("select").select("Blog").should("have.value", "blog");
+  });
+
+  it.only("marca tipo de atendimento feedback", () => {
+    cy.get('input[type="radio"][value="feedback"]')
+      .check()
+      .should("have.value", "feedback");
+  });
+
+  it("seleciona cada campo de radio", () => {
+    cy.get("input[type='radio']")
+      .should("have.length", 3)
+      .each((radio) => {
+        cy.wrap(radio).check().should("be.checked");
+      });
   });
 });
