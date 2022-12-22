@@ -37,7 +37,7 @@ document.querySelector('button[type="submit"]').addEventListener(
       !emailField.value ||
       !textareaField.value
     ) {
-      // return showAndHideErrorMessage();
+      return showAndHideErrorMessage();
     }
     if (isPhoneRequired && !phoneField.value) {
       return showAndHideErrorMessage();
@@ -45,7 +45,7 @@ document.querySelector('button[type="submit"]').addEventListener(
     if (
       !emailField.value.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
     ) {
-      // return showAndHideErrorMessage()
+      return showAndHideErrorMessage();
     }
     firstNameField.value = "";
     lastNameField.value = "";
