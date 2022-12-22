@@ -37,7 +37,7 @@ document.querySelector('button[type="submit"]').addEventListener(
       !emailField.value ||
       !textareaField.value
     ) {
-      return showAndHideErrorMessage();
+      // return showAndHideErrorMessage();
     }
     if (isPhoneRequired && !phoneField.value) {
       return showAndHideErrorMessage();
